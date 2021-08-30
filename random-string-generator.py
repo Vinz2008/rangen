@@ -6,7 +6,7 @@ number_for_index = 0
 while number_for_index < number_of_character:
     print("bonjour")
     number_for_index = number_for_index + 1
-
+#a
 #random_index1 = random.randrange(len(table_characters))
 #random_index2 = random.randrange(len(table_characters))
 #random_index3 = random.randrange(len(table_characters))
