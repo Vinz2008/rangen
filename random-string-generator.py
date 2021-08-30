@@ -10,9 +10,9 @@ while number_for_index < number_of_character:
     table_result.append(random_index2)
     number_for_index = number_for_index + 1
 
-number_of_character_loop = 0
-random_string = table_result[number_of_character_loop]
+number_of_character_loop = 1
+random_string = table_result[0]
 while number_of_character_loop < number_of_character:
-    number_of_character_loop = number_of_character_loop + 1 
     random_string = random_string + table_result[number_of_character_loop]
+    number_of_character_loop = number_of_character_loop + 1 
 print(random_string)
