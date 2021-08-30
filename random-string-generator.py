@@ -11,7 +11,7 @@ while number_for_index < number_of_character:
     number_for_index = number_for_index + 1
 
 number_of_character_loop = 1
-random_string = table_result[1]
+random_string = table_result[number_of_character_loop]
 while number_of_character_loop < number_of_character:
     random_string = random_string + table_result[number_of_character_loop]
     number_of_character_loop = number_of_character_loop + 1 
