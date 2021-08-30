@@ -13,6 +13,6 @@ while number_for_index < number_of_character:
 number_of_character_loop = 0
 random_string = table_result[number_of_character_loop]
 while number_of_character_loop < number_of_character:
-    random_string = random_string + table_result[number_of_character_loop]
     number_of_character_loop = number_of_character_loop + 1 
+    random_string = random_string + table_result[number_of_character_loop]
 print(random_string)
