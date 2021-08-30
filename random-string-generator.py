@@ -10,12 +10,6 @@ while number_for_index < number_of_character:
     table_result.append(random_index2)
     number_for_index = number_for_index + 1
 
-#random_index1 = random.randrange(len(table_characters))
-#random_index2 = random.randrange(len(table_characters))
-#random_index3 = random.randrange(len(table_characters))
-#random_index4 = random.randrange(len(table_characters))
-#random_index5 = random.randrange(len(table_characters))
-#random_index6 = random.randrange(len(table_characters))
 number_of_character_loop = 1
 random_string = table_result[1]
 while number_of_character_loop < number_of_character:
