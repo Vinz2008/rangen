@@ -1,0 +1,56 @@
+#!/usr/bin/python3
+import random
+import sys
+import numpy as np
+length = 1
+
+def create_arr_zeros(size=1):
+    arr1=[ ]              
+    for i in range(size):
+        arr1.append(0.)
+    return arr1
+
+
+def base_gen(mult=16807, mod=(2**31)-1, seed=123456789, size=1):
+#    U = create_arr_zeros(size)
+    U = np.zeros(size)
+    x = (seed*mult+1)%mod
+    U[0] = x/mod
+    for i in range(1, size):
+        x = (x*mult+1)%mod
+        U[i] = x/mod
+    return U
+random_string = " "
+
+
+def int_gen(low = 0, high = 1000000,seed = 123456789, size = 1):
+    return low+(high-low)*base_gen(seed=seed,size=size)
+
+def string():
+    table_characters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","x","y","z"]
+    number_of_character = int(input("How much character do you want for your random string ? : ")) 
+    number_for_index = 0
+    table_result =[]
+    while number_for_index < number_of_character:
+        random_index1 = random.randrange(1,26) - 1
+        random_index2 = table_characters[random_index1]
+        table_result.append(random_index2)
+        number_for_index = number_for_index + 1
+
+    number_of_character_loop = 1
+    random_string = table_result[0]
+    while number_of_character_loop < number_of_character:
+        random_string = random_string + table_result[number_of_character_loop]
+        number_of_character_loop = number_of_character_loop + 1 
+    print(random_string)
+
+for i in range(1, len(sys.argv)):
+    print(sys.argv[i])
+    if sys.argv[i] == "int":
+       if i + 1 > len(sys.argv):
+           length = 1
+       else:
+           length = int(sys.argv[i+1])
+           i += 1
+
+print(int_gen(size=length))
