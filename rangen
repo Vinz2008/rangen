@@ -1,8 +1,11 @@
 #!/usr/bin/python3
-import random
 import sys
+import time
 import numpy as np
 length = 1
+maxNb = 1000
+minNb = 0
+nbChar = 1
 
 def create_arr_zeros(size=1):
     arr1=[ ]              
@@ -23,34 +26,66 @@ def base_gen(mult=16807, mod=(2**31)-1, seed=123456789, size=1):
 random_string = " "
 
 
-def int_gen(low = 0, high = 1000000,seed = 123456789, size = 1):
+def int_gen(low = 0, high = 1,seed = 123456789, size = 1):
     return low+(high-low)*base_gen(seed=seed,size=size)
 
-def string():
-    table_characters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","x","y","z"]
-    number_of_character = int(input("How much character do you want for your random string ? : ")) 
-    number_for_index = 0
-    table_result =[]
-    while number_for_index < number_of_character:
-        random_index1 = random.randrange(1,26) - 1
-        random_index2 = table_characters[random_index1]
-        table_result.append(random_index2)
-        number_for_index = number_for_index + 1
+def sample_pick(list):
+    t = time.perf_counter()
+    seed = int(10**9*float(str(t-int(t))[0:]))
+    lengthList = len(list)
+    posRandomNumber =  int_gen(low=0,high=lengthList,seed=seed,size=1)
+    pos = int(posRandomNumber)
+    return (list[pos])
 
-    number_of_character_loop = 1
-    random_string = table_result[0]
-    while number_of_character_loop < number_of_character:
-        random_string = random_string + table_result[number_of_character_loop]
-        number_of_character_loop = number_of_character_loop + 1 
-    print(random_string)
+
+def char():
+    table_characters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","x","y","z"]
+    result = sample_pick(table_characters)
+    return result
+
+
+def string(nbChar=1):
+    table_result = []
+    for i in range(nbChar + nbChar -1):
+        table_result.append(char())
+    string = "".join(str(x) for x in table_result)
+    return string
+    
+
 
 for i in range(1, len(sys.argv)):
-    print(sys.argv[i])
+    #print(sys.argv[i])
     if sys.argv[i] == "int":
-       if i + 1 > len(sys.argv):
+        type = "int"
+        if i + 1 >= len(sys.argv):
            length = 1
-       else:
+        else:
            length = int(sys.argv[i+1])
            i += 1
+        if sys.argv[i + 1] == "--max":
+            maxNb = int(sys.argv[i+2])
+            i += 1
+        elif sys.argv[i + 1] == "--min":
+            minNb = int(sys.argv[i+2])
+            i += 1
+    if sys.argv[i] == "char":
+        type = "char"
+        if sys.argv[i + 1] == "--nb":
+            nbChar = int(sys.argv[i+2])
+            i+=1
+    if sys.argv[i] == "string":
+        type = "str"
 
-print(int_gen(size=length))
+
+if type == "int":
+    print(int_gen(size=length, high=maxNb, low=minNb))
+    for i in int_gen(size=length, high=maxNb, low=minNb):
+        print(int(i))
+    print("\n")
+
+    print(base_gen(size=length,mod=maxNb))
+
+elif type == "char":
+    print(char())
+elif type == "str":
+    print(string(nbChar=nbChar))
