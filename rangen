@@ -11,12 +11,16 @@ def create_arr_zeros(size=1):
     arr1=[ ]
     for i in range(size):
         arr1.append(0.)
+        print("when i=", i,"arr1 : ",arr1)
+    print("arr1 : ",arr1)
     return arr1
 
 
 def base_gen(mult=16807, mod=(2**31)-1, seed=123456789, size=1):
-#    U = create_arr_zeros(size)
+    #U = create_arr_zeros(size)
     U = np.zeros(size)
+    print(U == create_arr_zeros(size))
+    print("U : " , U)
     x = (seed*mult+1)%mod
     U[0] = x/mod
     for i in range(1, size):
@@ -61,12 +65,15 @@ for i in range(1, len(sys.argv)):
         else:
            length = int(sys.argv[i+1])
            i += 1
-        if sys.argv[i + 1] == "--max":
-            maxNb = int(sys.argv[i+2])
-            i += 1
-        elif sys.argv[i + 1] == "--min":
-            minNb = int(sys.argv[i+2])
-            i += 1
+           try:
+               if sys.argv[i + 1] == "--max":
+                   maxNb = int(sys.argv[i+2])
+                   i += 1
+               elif sys.argv[i + 1] == "--min":
+                   minNb = int(sys.argv[i+2])
+                   i += 1
+           except:
+               pass
     if sys.argv[i] == "char":
         type = "char"
     if sys.argv[i] == "string":
