@@ -8,7 +8,7 @@ minNb = 0
 nbChar = 1
 
 def create_arr_zeros(size=1):
-    arr1=[ ]              
+    arr1=[ ]
     for i in range(size):
         arr1.append(0.)
     return arr1
@@ -46,11 +46,10 @@ def char():
 
 def string(nbChar=1):
     table_result = []
-    for i in range(nbChar + nbChar -1):
+    for i in range(nbChar):
         table_result.append(char())
     string = "".join(str(x) for x in table_result)
     return string
-    
 
 
 for i in range(1, len(sys.argv)):
@@ -70,12 +69,11 @@ for i in range(1, len(sys.argv)):
             i += 1
     if sys.argv[i] == "char":
         type = "char"
-        if sys.argv[i + 1] == "--nb":
-            nbChar = int(sys.argv[i+2])
-            i+=1
     if sys.argv[i] == "string":
         type = "str"
-
+        if sys.argv[i + 1] == "--length":
+            nbChar = int(sys.argv[i+2])
+            i+=1
 
 if type == "int":
     print(int_gen(size=length, high=maxNb, low=minNb))
